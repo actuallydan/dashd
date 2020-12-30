@@ -15,9 +15,9 @@ const useStyles = makeStyles(styles);
 
 export default function GridItem(props) {
   const classes = useStyles();
-  const { children, ...rest } = props;
+  const { children, forwardedRef, ...rest } = props;
   return (
-    <Grid item {...rest} className={classes.grid}>
+    <Grid item {...rest} ref={forwardedRef} className={classes.grid}>
       {children}
     </Grid>
   );
