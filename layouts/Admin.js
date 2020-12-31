@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
@@ -59,7 +59,7 @@ export default function Admin({ children, ...rest }) {
     }
   };
   // initialize and destroy the PerfectScrollbar plugin
-  React.useEffect(() => {
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(mainPanel.current, {
         suppressScrollX: true,
@@ -68,19 +68,19 @@ export default function Admin({ children, ...rest }) {
       document.body.style.overflow = "hidden";
     }
     window.addEventListener("resize", resizeFunction);
-    // Specify how to clean up after this effect:
-    return function cleanup() {
+    return function () {
       if (navigator.platform.indexOf("Win") > -1) {
         ps.destroy();
       }
       window.removeEventListener("resize", resizeFunction);
     };
   }, [mainPanel]);
+
   return (
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Creative Tim"}
+        logoText={"Dashd"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
